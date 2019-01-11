@@ -1,0 +1,138 @@
+// Use it on other .scss file: @import 'variables';
+
+// Workspace
+
+// Setting --------------------------------------------------
+// --- Desktop Width ---
+$desktop-width: 1024px;
+// --- B&W ---
+$b: black;
+$w: white;
+// --- Type ---
+$base: 1rem;
+$ratio: 1.15;
+$bold: 600;
+
+// Variables --------------------------------------------------
+
+// Responsive
+@mixin desktop {
+  @media screen and (min-width: $desktop-width) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $desktop-width - 1) {
+    @content;
+  }
+}
+
+// B&W
+$b09: rgba($b, 0.9);
+$b08: rgba($b, 0.8);
+$b07: rgba($b, 0.7);
+$b06: rgba($b, 0.6);
+$b05: rgba($b, 0.5);
+$b04: rgba($b, 0.4);
+$b03: rgba($b, 0.3);
+$b02: rgba($b, 0.2);
+$b01: rgba($b, 0.1);
+$b0075: rgba($b, 0.075);
+$b005: rgba($b, 0.05);
+$b0025: rgba($b, 0.025);
+$b001: rgba($b, 0.01);
+$b0: rgba($b, 0);
+
+$w09: rgba($w, 0.9);
+$w08: rgba($w, 0.8);
+$w07: rgba($w, 0.7);
+$w06: rgba($w, 0.6);
+$w05: rgba($w, 0.5);
+$w04: rgba($w, 0.4);
+$w03: rgba($w, 0.3);
+$w02: rgba($w, 0.2);
+$w01: rgba($w, 0.1);
+$w0075: rgba($w, 0.075);
+$w005: rgba($w, 0.05);
+$w0025: rgba($w, 0.025);
+$w001: rgba($w, 0.01);
+$w0: rgba($w, 0);
+
+// Type
+@mixin font($scale: 0, $weight: null) {
+  font-size: $base * pow($ratio, $scale);
+
+  @if $weight == b {
+    font-weight: $bold;
+  } @else {
+    font-weight: $weight;
+  }
+}
+
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  } @else if $exponent < 0 {
+    @for $i from 1 through -$exponent {
+      $value: $value / $number;
+    }
+  }
+
+  @return $value;
+}
+
+// Gap
+@mixin gap($direction, $gap) {
+  @if $direction == h {
+    &:not(:last-child) {
+      margin-right: $gap;
+    }
+  }
+
+  @if $direction == v {
+    &:not(:last-child) {
+      margin-bottom: $gap;
+    }
+  }
+}
+
+// Grid
+@mixin grid($column, $gap) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$gap;
+  > * {
+    margin: $gap;
+    flex: calc(#{100 / $column}% - #{$gap * $column});
+  }
+}
+
+// Style
+@mixin overlay($opacity: 0.5) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba($b, $opacity);
+}
+
+@mixin button($style: false) {
+  cursor: pointer;
+  user-select: none;
+  transition: all 100ms;
+
+  @if $style == styled {
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      opacity: 1;
+    }
+  }
+}

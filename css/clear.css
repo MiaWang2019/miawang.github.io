@@ -1,0 +1,56 @@
+/* Linci */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
+    Roboto, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei,
+    Microsoft Jhenghei, sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+figure,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,svg {
+  vertical-align: middle;
+}
+
+input,button {
+  outline: none;
+}
